@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+
+    <!--NAV-->
+   <nav class="navbar navbar-expand-sm bg-body-tertiary">
+  <div class="container-fluid">
+    <img src="/assets/file.png" alt="Bootstrap" width="60">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+
+      <ul class="navbar-nav ms-">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Servicios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contacto</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">Redes</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<!-- Carrusel -->
+
+<div class="container my-5">
+  <div class="row align-items-center">
+    
+    <!-- Carrusel a la izquierda -->
+    <div class="col-md-6">
+      <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+        <div class="carousel-inner">
+
+          <div class="carousel-item active">
+            <img src="assets/ventoatras.jpeg" class="d-block w-100 carousel-img" alt="Imagen 1">
+          </div>
+
+          <div class="carousel-item">
+            <img src="assets/volantebmw.jpg" class="d-block w-100 carousel-img" alt="Imagen 2">
+          </div>
+
+          <div class="carousel-item">
+            <img src="assets/frentebmw.jpg" class="d-block w-100 carousel-img" alt="Imagen 3">
+          </div>
+
+        </div>
+
+        <!-- Controles -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Texto a la derecha -->
+    <div class="col-md-6 text-section">
+      <h2>Sobre Nosotros</h2>
+      <p>
+        Somos una empresa dedicada al cuidado automotor con más de 10 años de experiencia en el rubro.
+        Ofrecemos lavados premium, detallado interior y tratamientos de pintura con productos de primera calidad.
+      </p>
+      <p>
+        Nuestro objetivo es brindar un servicio confiable y profesional para que tu vehículo luzca siempre impecable.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<section class="servicios my-5">
+  <div class="container text-center">
+    <h2 class="mb-4">Nuestros Servicios</h2>
+
+    <div class="row g-4">
+
+      <!-- Servicio Básico -->
+      <div class="col-md-4">
+        <div class="card servicio-card">
+          <div class="card-body">
+            <h3 class="card-title">Básico</h3>
+            <p class="card-text">
+              Lavado exterior completo con shampoo neutro y enjuague a presión. 
+              Ideal para mantener tu vehículo limpio y reluciente.
+            </p>
+            <h4 class="precio">$5.000</h4>
+            <button class="btn-servicio">Elegir Plan</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Servicio Mediano -->
+      <div class="col-md-4">
+        <div class="card servicio-card destacado">
+          <div class="card-body">
+            <h3 class="card-title">Mediano</h3>
+            <p class="card-text">
+              Incluye lavado exterior + limpieza interior, aspirado y abrillantado de plásticos.
+            </p>
+            <h4 class="precio">$8.500</h4>
+            <button class="btn-servicio">Elegir Plan</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Servicio Premium -->
+      <div class="col-md-4">
+        <div class="card servicio-card">
+          <div class="card-body">
+            <h3 class="card-title">Premium</h3>
+            <p class="card-text">
+              Lavado completo, detallado interior y encerado con productos de alta calidad.
+              Ideal para un acabado profesional.
+            </p>
+            <h4 class="precio">$12.000</h4>
+            <button class="btn-servicio">Elegir Plan</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>
