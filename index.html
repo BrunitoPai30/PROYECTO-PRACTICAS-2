@@ -3,42 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Blessed Wash</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="/styles/style.css">
 </head>
 <body>
 
     <!--NAV-->
-   <nav class="navbar navbar-expand-sm bg-body-tertiary">
-  <div class="container-fluid">
-    <img src="/assets/file.png" alt="Bootstrap" width="60">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg custom-navbar fixed-top">
+  <div class="container">
+    <!-- Logo -->
+    <a class="navbar-brand" href="#">
+      <img src="/assets/file.png" alt="Logo" class="logo">
+      Blessed Wash
+    </a>
+
+    <!-- Botón para celu -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
 
-      <ul class="navbar-nav ms-">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Servicios</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contacto</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Redes</a>
+    <!-- Botones del NAV -->
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="#nosotros">Servicios</a></li>
+        <li class="nav-item"><a class="nav-link" href="#servicios">Marcas</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+
+        <!-- Carrito -->
+        <li class="nav-item dropdown">
+          <a class="nav-link position-relative" href="#" id="cartDropdown" data-bs-toggle="dropdown">
+            🛒
+            <span id="cart-count" class="cart-count">0</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cartDropdown" id="cart-menu">
+            <li class="dropdown-item text-center text-muted">El carrito está vacío</li>
+          </ul>
         </li>
       </ul>
-
     </div>
   </div>
 </nav>
 
 
-<!-- Carrusel -->
+
+<!-- CARRUSEL -->
 
 <div class="container my-5">
   <div class="row align-items-center">
@@ -86,6 +97,9 @@
 
   </div>
 </div>
+
+
+<!-- SERVICIOS -->
 
 <section class="servicios my-5">
   <div class="container text-center">
@@ -142,8 +156,70 @@
 </section>
 
 
+<!-- MARCAS UTILIZADAS -->
+
+<section class="brands-section text-center">
+  <div class="container">
+    <h2 class="section-title mb-4">Marcas que utilizamos</h2>
+    <div class="row justify-content-center">
+
+      <!-- Marca 1: 3D High Definition Car Care -->
+      <div class="col-md-5 col-sm-10 brand-card">
+        <img src="assets/3d.jpg" alt="3D High Definition Car Care" class="brand-img">
+        <p class="brand-desc">
+          Utilizamos productos de <strong>3D High Definition Car Care</strong>, una marca líder en el cuidado automotriz profesional.
+          Sus fórmulas avanzadas ofrecen un brillo profundo, protección duradera y un acabado de nivel de detalle premium,
+          ideales para lograr resultados de alta definición en cada lavado.
+        </p>
+      </div>
+
+      <!-- Marca 2: Vonixx Argentina -->
+      <div class="col-md-5 col-sm-10 brand-card">
+        <img src="assets/vonix.jpg" alt="Vonixx Argentina" class="brand-img">
+        <p class="brand-desc">
+          Confiamos también en <strong>Vonixx Argentina</strong>, reconocida por su innovación en productos de limpieza y protección automotriz.
+          Su línea combina rendimiento profesional con componentes biodegradables, cuidando tanto el vehículo como el medio ambiente.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- REDES SOCIALES FINALES -->
+<footer class="social-footer text-center">
+  <div class="container">
+    <p class="footer-text mb-3">Seguinos en nuestras redes</p>
+
+    <div class="social-icons">
+      <!-- Instagram -->
+      <a href="https://www.instagram.com//blessed_washh" target="_blank" class="social-link" aria-label="Instagram">
+        <i class="bi bi-instagram"></i>
+      </a>
+
+      <!-- WhatsApp-->
+      <a 
+        href="https://wa.me/5492323285196?text=¡Hola!%20Quisiera%20hacer%20una%20consulta%20sobre%20sus%20servicios%20de%20lavado."
+        target="_blank"
+        class="social-link"
+        aria-label="WhatsApp"
+      >
+        <i class="bi bi-whatsapp"></i>
+      </a>
+    </div>
+
+    <p class="footer-copy mt-3">© 2025 Blessed Wash</p>
+  </div>
+</footer>
+
+
+
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-</body>
+    <script src="js/main.js"></script>
+
+  </body>
 </html>

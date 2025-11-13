@@ -1,3 +1,86 @@
+.custom-navbar {
+  backdrop-filter: blur(8px);
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 0.4rem 1rem;
+  z-index: 1000;
+}
+
+.navbar-brand {
+  color: #fff !important;
+  font-weight: 600;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.nav-link {
+  color: #ddd !important;
+  margin: 0 10px;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #00bfff !important;
+}
+
+/* Contador del carrito */
+.cart-count {
+  background: #00bfff;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  padding: 2px 6px;
+  position: absolute;
+  top: 0;
+  right: -8px;
+}
+
+/* Dropdown del carrito */
+.dropdown-menu {
+  min-width: 250px;
+  background: rgba(20, 20, 20, 0.95);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+}
+
+.dropdown-item {
+  color: #ddd;
+}
+
+.dropdown-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Botón eliminar */
+.btn-remove {
+  background: transparent;
+  border: none;
+  color: #ff5050;
+  float: right;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.btn-remove:hover {
+  color: #ff7878;
+}
+
+body {
+  padding-top: 90px; /* ajustá el valor según cuánto querés separarlo */
+}
+
+
+
+
+
 /* ==== Carrusel ==== */
 .carousel-img {
   height: 400px;
@@ -107,3 +190,119 @@
 .btn-destacado:hover {
   background-color: #d9aa1f;
 }
+
+/*  MARCAS UTILIZADAS*/
+
+.brands-section {
+  background-color: rgba(0, 0, 0, 0.6); /* fondo oscuro translúcido */
+  padding: 60px 0;
+  color: #f5f5f5;
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: #00bfff;
+  text-shadow: 0 0 6px rgba(0, 191, 255, 0.5);
+}
+
+.brand-card {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-radius: 15px;
+  padding: 25px;
+  margin: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.brand-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 15px rgba(0, 191, 255, 0.4);
+}
+
+.brand-img {
+  width: 150px;
+  height: auto;
+  margin-bottom: 15px;
+  filter: drop-shadow(0 0 5px rgba(0, 191, 255, 0.5));
+}
+
+.brand-desc {
+  font-size: 0.95rem;
+  color: #ddd;
+  line-height: 1.4;
+}
+
+/* 📱 Ajustes responsive */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 1.6rem;
+  }
+
+  .brand-card {
+    margin-bottom: 20px;
+    padding: 20px;
+  }
+
+  .brand-img {
+    width: 120px;
+  }
+
+  .brand-desc {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-img {
+    width: 100px;
+  }
+
+  .section-title {
+    font-size: 1.4rem;
+  }
+}
+
+/* REDES SOCIALES FINALES */
+
+.social-footer {
+  background-color: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  padding: 40px 0 25px;
+  margin-top: 60px;
+}
+
+.footer-text {
+  font-size: 1.2rem;
+  color: #00bfff;
+  text-shadow: 0 0 6px rgba(0, 191, 255, 0.6);
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+.social-link {
+  color: #fff;
+  font-size: 2rem;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  color: #00bfff;
+  transform: scale(1.2);
+  text-shadow: 0 0 10px rgba(0, 191, 255, 0.8);
+}
+
+.footer-copy {
+  font-size: 0.85rem;
+  color: #ccc;
+}
+
+@media (max-width: 480px) {
+  .social-link {
+    font-size: 1.8rem;
+  }
+}
+
