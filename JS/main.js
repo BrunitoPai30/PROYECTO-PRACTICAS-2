@@ -1,21 +1,24 @@
 document.addEventListener("DOMContentLoaded", () => {
+
   const buttons = document.querySelectorAll(".btn-servicio");
   const cartMenu = document.getElementById("cart-menu");
   const cartCount = document.getElementById("cart-count");
 
   let carrito = [];
 
+  // Agregar al carrito
   buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
-      const card = btn.closest(".card");
-      const nombre = card.querySelector(".card-title").textContent;
-      const precio = card.querySelector(".precio").textContent;
+      const item = btn.closest(".cat-item"); // CAMBIADO
+      const nombre = item.querySelector("h4").textContent; // CAMBIADO
+      const precio = item.querySelector(".cat-precio").textContent; // CAMBIADO
 
       carrito.push({ nombre, precio });
       actualizarCarrito();
     });
   });
 
+  // Actualizar carrito
   function actualizarCarrito() {
     cartMenu.innerHTML = "";
 
@@ -35,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cartMenu.appendChild(li);
     });
 
+    // Botón vaciar
     const vaciar = document.createElement("li");
     vaciar.classList.add("dropdown-item", "text-center");
     vaciar.innerHTML = `<button class="btn btn-sm btn-danger" id="vaciarCarrito">Vaciar carrito</button>`;
@@ -42,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     cartCount.textContent = carrito.length;
 
-    // eliminar item
+    // Botones borrar uno
     document.querySelectorAll(".btn-remove").forEach((btn) => {
       btn.addEventListener("click", (e) => {
         const i = e.target.dataset.index;
@@ -51,11 +55,12 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    // vaciar carrito
+    // Vaciar todo
     document.getElementById("vaciarCarrito").addEventListener("click", () => {
       carrito = [];
       actualizarCarrito();
     });
   }
+
 });
 
