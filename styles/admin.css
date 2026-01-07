@@ -1,0 +1,138 @@
+/* ===============================
+   CONTENEDOR PRINCIPAL
+================================ */
+.container {
+    max-width: 900px;
+    padding: 20px;
+}
+
+/* ===============================
+   TÍTULO PRINCIPAL
+================================ */
+h2 {
+    font-weight: 700;
+    color: #0d6efd;
+}
+
+/* ===============================
+   TARJETA DE FILTROS
+================================ */
+.card h5 {
+    font-weight: 600;
+}
+
+/* Inputs más compactos */
+#fechaFiltro,
+#estadoFiltro {
+    min-width: 180px;
+}
+
+/* ===============================
+   LISTA DE PEDIDOS
+================================ */
+#listaPedidos {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* ===============================
+   TARJETA DEL PEDIDO
+================================ */
+.pedido {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 6px solid #0d6efd;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+/* ===============================
+   ESTADOS DEL PEDIDO
+================================ */
+.pedido[data-estado="pendiente"] {
+    border-left-color: #ffc107;
+}
+
+.pedido[data-estado="confirmada"] {
+    border-left-color: #198754;
+}
+
+/* ===============================
+   ENCABEZADO DEL PEDIDO
+================================ */
+.pedido h5 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* ===============================
+   DETALLES DEL PEDIDO
+================================ */
+.pedido p,
+.pedido ul {
+    margin: 5px 0;
+}
+
+.pedido ul {
+    padding-left: 20px;
+}
+
+/* ===============================
+   HOVER
+================================ */
+.pedido:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* ===============================
+   BOTÓN LOGOUT
+================================ */
+#btnLogout {
+    margin-top: 20px;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 576px) {
+
+    .card-body > div {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #fechaFiltro,
+    #estadoFiltro {
+        width: 100%;
+    }
+
+    .d-flex.gap-2 {
+        width: 100%;
+        justify-content: space-between;
+    }
+ }
+
+ /* ===============================
+   BADGE DE ESTADO
+================================ */
+.estado-badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.estado-badge.pendiente {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.estado-badge.confirmada {
+    background-color: #d1e7dd;
+    color: #0f5132;
+}

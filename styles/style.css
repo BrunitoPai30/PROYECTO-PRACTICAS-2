@@ -45,7 +45,7 @@
 /* Dropdown del carrito */
 .dropdown-menu {
   min-width: 250px;
-  background: rgba(20, 20, 20, 0.95);
+  background: rgba(163, 163, 163, 0.95);
   color: #fff;
   border: none;
   border-radius: 10px;
@@ -76,9 +76,6 @@
 body {
   padding-top: 90px; /* ajustá el valor según cuánto querés separarlo */
 }
-
-
-
 
 
 /* ==== Carrusel ==== */
@@ -305,7 +302,7 @@ body {
     font-size: 1.8rem;
   }
 }
-/* ======================= CATEGORÍAS ======================= */
+
 
 /* ======================= CATEGORÍAS ======================= */
 
@@ -403,4 +400,206 @@ body {
 .cat-item .add-to-cart:hover {
   background: #1e581e;
   transform: scale(1.05);
+}
+
+
+/* CHECKOUT */
+.checkout-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #00bfff;
+  text-shadow: 0 0 6px rgba(0, 191, 255, 0.5);
+}
+
+.checkout-box {
+  background: #ffffffd0;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  max-width: 600px;
+  margin: auto;
+}
+
+.confirmar-btn {
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 12px;
+}
+ 
+
+/*CHECKOUT*/
+.form-container {
+    background: #ffffffdd;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 650px;
+    margin: 120px auto;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+    backdrop-filter: blur(3px);
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.detalle-box {
+    background: #f7f7f7;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.detalle-item {
+    border-bottom: 1px solid #ddd;
+    padding: 8px 0;
+}
+
+.detalle-item:last-child {
+    border-bottom: none;
+}
+
+.total-final {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+/* ===================== CATEGORÍAS HORIZONTALES ===================== */
+
+/* Cada categoría ocupa todo el ancho */
+.categorias-servicios .col-md-4 {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+/* Caja general */
+.categoria-box {
+  margin-bottom: 50px;
+}
+
+/* Título de categoría */
+.categoria-titulo {
+  text-align: left;
+  font-size: 2rem;
+  margin-bottom: 25px;
+  border-left: 5px solid #00bfff;
+  padding-left: 15px;
+}
+
+/* Contenedor de tarjetas */
+.categoria-box {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Fila de cards */
+.categoria-box .cat-item {
+  width: 100%;
+}
+
+/* Grid horizontal de servicios */
+.categoria-box {
+  gap: 20px;
+}
+
+/* Convertimos los items en grilla */
+.categoria-box {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+/* ===================== COMBOS DESTACADOS ===================== */
+
+.categoria-central {
+  background: linear-gradient(135deg, rgba(0,0,0,0.95), rgba(25,25,25,0.95));
+  border: 2px solid #f0c330;
+  box-shadow: 0 0 25px rgba(240,195,48,0.4);
+}
+
+.categoria-central .categoria-titulo {
+  color: #f0c330;
+  border-left: 5px solid #f0c330;
+}
+
+/* Cards del combo más grandes */
+.categoria-central .cat-item {
+  transform: scale(1.03);
+}
+
+/* ===================== HOVER PRO ===================== */
+
+.cat-item {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cat-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+}
+
+/* ===================== RESPONSIVE ===================== */
+
+@media (max-width: 768px) {
+  .categoria-titulo {
+    font-size: 1.6rem;
+  }
+
+  .categoria-central .cat-item {
+    transform: none;
+  }
+}/* ===================== COMBOS CENTRADO ===================== */
+
+.categoria-central {
+  margin: 0 auto 60px auto;
+  max-width: 1100px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Efecto visual tipo spotlight */
+.categoria-central::before {
+  content: "";
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(
+    circle at center,
+    rgba(240,195,48,0.25),
+    transparent 70%
+  );
+  z-index: -1;
+}
+
+/* Cards de combos más grandes */
+.categoria-central .cat-item {
+  transform: scale(1.05);
+}/* ===================== ANIMACIONES ===================== */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animación base */
+.categoria-box {
+  opacity: 0;
+  animation: fadeUp 0.9s ease forwards;
+}
+
+/* Orden de entrada */
+.categoria-box:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.categoria-box:nth-child(2) {
+  animation-delay: 0.45s;
+}
+
+.categoria-box:nth-child(3) {
+  animation-delay: 0.7s;
 }
