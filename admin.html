@@ -17,13 +17,70 @@
     <!-- TÍTULO -->
     <h2 class="mb-4 text-center">Panel del Administrador</h2>
 
-    <!-- TARJETA DE FILTROS -->
+    <!-- ================= HORARIOS DISPONIBLES ================= -->
+    <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+            <h5 class="mb-3">Disponibilidad de trabajo</h5>
+
+            <div class="d-flex flex-wrap gap-3 align-items-end">
+
+                <!-- Fecha -->
+                <div>
+                    <label class="form-label">Fecha</label>
+                    <input type="date" id="fechaDisponibilidad" class="form-control">
+                </div>
+
+                <!-- Horarios -->
+                <div>
+                    <label class="form-label">Horarios disponibles</label>
+                    <select id="horariosDisponibles" class="form-select" multiple>
+                        <option value="08:00">08:00</option>
+                        <option value="09:00">09:00</option>
+                        <option value="10:00">10:00</option>
+                        <option value="11:00">11:00</option>
+                        <option value="14:00">14:00</option>
+                        <option value="15:00">15:00</option>
+                        <option value="16:00">16:00</option>
+                    </select>
+                    <small class="text-muted">
+                        Mantené Ctrl (o Cmd) para seleccionar varios
+                    </small>
+                </div>
+
+                <!-- Botón -->
+                <div>
+                    <button id="btnGuardarDisponibilidad" class="btn btn-success">
+                        Guardar disponibilidad
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= LISTADO DE DISPONIBILIDAD (NUEVO) ================= -->
+    <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+            <h5 class="mb-3">Disponibilidad cargada</h5>
+
+            <!-- acá el JS va a renderizar fechas y horarios -->
+            <div id="listaDisponibilidad" class="d-flex flex-column gap-3">
+                <!-- dinámico -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= FILTROS ================= -->
     <div class="card mb-4 shadow-sm">
         <div class="card-body">
 
             <h5 class="mb-3">Filtros</h5>
 
-            <div class="d-flex flex-wrap gap-2 align-items-end">
+            <a href="admin-completados.html" class="btn-ver-completados">
+                ✔ Ver trabajos completados
+            </a>
+
+            <div class="d-flex flex-wrap gap-2 align-items-end mt-3">
 
                 <!-- Filtro fecha -->
                 <div>

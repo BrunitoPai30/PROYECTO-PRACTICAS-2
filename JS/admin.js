@@ -2,21 +2,139 @@ import {
     db,
     getDocs,
     collection,
+    addDoc,
     deleteDoc,
     doc,
-    updateDoc
+    updateDoc,
+    query,
+    where
 } from "./firebase.js";
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    /* ================= ELEMENTOS ================= */
     const listaPedidos = document.getElementById("listaPedidos");
+    const listaDisponibilidad = document.getElementById("listaDisponibilidad");
+
     const btnFiltrar = document.getElementById("btnFiltrar");
     const btnMostrarTodos = document.getElementById("btnMostrarTodos");
     const fechaFiltro = document.getElementById("fechaFiltro");
     const estadoFiltro = document.getElementById("estadoFiltro");
     const btnLogout = document.getElementById("btnLogout");
 
-    // ================= CARGAR RESERVAS =================
+    const fechaDisponibilidad = document.getElementById("fechaDisponibilidad");
+    const horariosSelect = document.getElementById("horariosDisponibles");
+    const btnGuardarDisponibilidad = document.getElementById("btnGuardarDisponibilidad");
+
+    /* =====================================================
+       DISPONIBILIDAD – CREAR
+    ===================================================== */
+    btnGuardarDisponibilidad?.addEventListener("click", async () => {
+        const fecha = fechaDisponibilidad.value;
+        const horarios = Array.from(horariosSelect.selectedOptions).map(o => o.value);
+
+        if (!fecha || horarios.length === 0) {
+            alert("Seleccioná una fecha y al menos un horario");
+            return;
+        }
+
+        try {
+            const q = query(
+                collection(db, "disponibilidad"),
+                where("fecha", "==", fecha)
+            );
+            const snap = await getDocs(q);
+
+            if (!snap.empty) {
+                alert("⚠️ Ya existe disponibilidad para esa fecha");
+                return;
+            }
+
+            await addDoc(collection(db, "disponibilidad"), {
+                fecha,
+                horarios
+            });
+
+            alert("Disponibilidad guardada ✔");
+            fechaDisponibilidad.value = "";
+            horariosSelect.selectedIndex = -1;
+
+            cargarDisponibilidad();
+
+        } catch (err) {
+            console.error(err);
+            alert("Error al guardar disponibilidad");
+        }
+    });
+
+    /* =====================================================
+       DISPONIBILIDAD – LISTAR / BORRAR
+    ===================================================== */
+    async function cargarDisponibilidad() {
+        if (!listaDisponibilidad) return;
+
+        listaDisponibilidad.innerHTML = "";
+
+        const snap = await getDocs(collection(db, "disponibilidad"));
+
+        if (snap.empty) {
+            listaDisponibilidad.innerHTML = `<p class="text-muted">No hay disponibilidad cargada</p>`;
+            return;
+        }
+
+        snap.forEach(docItem => {
+            const data = docItem.data();
+
+            const div = document.createElement("div");
+            div.className = "border rounded p-3";
+
+            div.innerHTML = `
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <strong>${data.fecha}</strong>
+                    <button class="btn btn-sm btn-danger btn-borrar-fecha">
+                        🗑 Borrar fecha
+                    </button>
+                </div>
+
+                <div class="d-flex flex-wrap gap-2">
+                    ${data.horarios.map(h => `
+                        <button class="btn btn-outline-secondary btn-sm btn-borrar-hora" data-hora="${h}">
+                            ${h} ❌
+                        </button>
+                    `).join("")}
+                </div>
+            `;
+
+            div.querySelector(".btn-borrar-fecha").addEventListener("click", async () => {
+                if (!confirm("¿Eliminar toda la disponibilidad de este día?")) return;
+                await deleteDoc(doc(db, "disponibilidad", docItem.id));
+                cargarDisponibilidad();
+            });
+
+            div.querySelectorAll(".btn-borrar-hora").forEach(btn => {
+                btn.addEventListener("click", async () => {
+                    const hora = btn.dataset.hora;
+                    const nuevosHorarios = data.horarios.filter(h => h !== hora);
+
+                    if (nuevosHorarios.length === 0) {
+                        await deleteDoc(doc(db, "disponibilidad", docItem.id));
+                    } else {
+                        await updateDoc(doc(db, "disponibilidad", docItem.id), {
+                            horarios: nuevosHorarios
+                        });
+                    }
+
+                    cargarDisponibilidad();
+                });
+            });
+
+            listaDisponibilidad.appendChild(div);
+        });
+    }
+
+    /* =====================================================
+       RESERVAS
+    ===================================================== */
     async function cargarReservas() {
         try {
             listaPedidos.innerHTML = "";
@@ -32,15 +150,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 const data = docItem.data();
                 const estadoActual = (data.estado || "pendiente").toLowerCase();
 
-                // 🔹 FILTRO FECHA
+                if (estadoActual === "completada") return;
                 if (fechaFiltro.value && data.fecha !== fechaFiltro.value) return;
-
-                // 🔹 FILTRO ESTADO
                 if (estadoFiltro.value && estadoActual !== estadoFiltro.value) return;
 
                 const pedidoDiv = document.createElement("div");
                 pedidoDiv.classList.add("pedido");
-                pedidoDiv.dataset.estado = estadoActual;
 
                 pedidoDiv.innerHTML = `
                     <div class="d-flex justify-content-between align-items-center mb-2 flex-wrap gap-2">
@@ -55,11 +170,11 @@ document.addEventListener("DOMContentLoaded", () => {
                             </select>
 
                             <button class="btn btn-success btn-sm btn-completar">
-                                Completado
+                                ✔ Completado
                             </button>
 
                             <button class="btn btn-danger btn-sm btn-eliminar">
-                                Eliminar
+                                🗑 Eliminar
                             </button>
                         </div>
                     </div>
@@ -67,60 +182,46 @@ document.addEventListener("DOMContentLoaded", () => {
                     <p><strong>Fecha:</strong> ${data.fecha} | <strong>Horario:</strong> ${data.hora || "-"}</p>
                     <p><strong>Total:</strong> $${Number(data.total || 0).toLocaleString()}</p>
 
-                    <p class="mb-1"><strong>Carrito:</strong></p>
-                    <ul>
+                    <p class="mb-1"><strong>Detalle del pedido:</strong></p>
+                    <ul class="mb-0">
                         ${(data.carrito || []).map(item =>
-                            `<li>${item.nombre} x ${item.cantidad} - $${item.precio}</li>`
+                            `<li>${item.nombre}</li>`
                         ).join("")}
                     </ul>
                 `;
 
                 listaPedidos.appendChild(pedidoDiv);
 
-                // ===== SELECT ESTADO (solo pendiente / confirmada) =====
                 const selectEstado = pedidoDiv.querySelector(".estado");
-                selectEstado.value = estadoActual === "completada" ? "confirmada" : estadoActual;
+                selectEstado.value = estadoActual;
 
                 selectEstado.addEventListener("change", async () => {
-                    const nuevoEstado = selectEstado.value;
-                    pedidoDiv.dataset.estado = nuevoEstado;
-
                     await updateDoc(doc(db, "reservas", docItem.id), {
-                        estado: nuevoEstado
+                        estado: selectEstado.value
                     });
                 });
 
-                // ===== BOTÓN COMPLETADO =====
                 pedidoDiv.querySelector(".btn-completar").addEventListener("click", async () => {
-                    if (!confirm("¿Marcar esta reserva como COMPLETADA?")) return;
-
-                    await updateDoc(doc(db, "reservas", docItem.id), {
-                        estado: "completada"
-                    });
-
-                    pedidoDiv.dataset.estado = "completada";
-
-                    // opcional: refrescar lista
+                    await updateDoc(doc(db, "reservas", docItem.id), { estado: "completada" });
                     cargarReservas();
                 });
 
-                // ===== ELIMINAR =====
                 pedidoDiv.querySelector(".btn-eliminar").addEventListener("click", async () => {
-                    if (!confirm("¿Eliminar esta reserva?")) return;
                     await deleteDoc(doc(db, "reservas", docItem.id));
                     cargarReservas();
                 });
             });
 
-        } catch (error) {
-            console.error(error);
-            listaPedidos.innerHTML = `<p style="color:red;">Error al cargar reservas.</p>`;
+        } catch (err) {
+            console.error(err);
         }
     }
 
-    // ================= EVENTOS =================
-    btnFiltrar.addEventListener("click", cargarReservas);
+    /* ================= INIT ================= */
+    cargarReservas();
+    cargarDisponibilidad();
 
+    btnFiltrar.addEventListener("click", cargarReservas);
     btnMostrarTodos.addEventListener("click", () => {
         fechaFiltro.value = "";
         estadoFiltro.value = "";
@@ -130,6 +231,4 @@ document.addEventListener("DOMContentLoaded", () => {
     btnLogout?.addEventListener("click", () => {
         window.location.href = "index.html";
     });
-
-    cargarReservas();
 });

@@ -136,3 +136,40 @@ h2 {
     background-color: #d1e7dd;
     color: #0f5132;
 }
+/* ===== BOTÓN VER COMPLETADOS ===== */
+.btn-ver-completados {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    font-weight: 500;
+
+    color: #198754;
+    background-color: #f8f9fa;
+
+    border: 1px solid #198754;
+    border-radius: 6px;
+
+    text-decoration: none;
+    width: fit-content;
+}
+
+/* ===== FILTROS ADMIN COMPLETOS ===== */
+.btn-ver-completados:hover {
+    background-color: #198754;
+    color: #fff;
+    text-decoration: none;
+}
+
+.filtros-admin {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.filtros-admin .filtro {
+    max-width: 180px;
+}

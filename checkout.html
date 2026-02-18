@@ -27,10 +27,14 @@
     <div class="detalle-box">
         <h5 class="mb-3">Detalle del Pedido</h5>
         <div id="detalle-items"></div>
-        <p class="total-final mt-2">Total: <span id="total-final"></span></p>
+        <p class="total-final mt-2">
+            Total: <span id="total-final"></span>
+        </p>
     </div>
 
+    <!-- ================= FORMULARIO ================= -->
     <form id="formReserva">
+
         <div class="mb-3">
             <label class="form-label">Nombre y Apellido</label>
             <input type="text" class="form-control" required>
@@ -43,7 +47,8 @@
 
         <div class="mb-3">
             <label class="form-label">Número de celular</label>
-            <input type="tel" class="form-control" id="telefono" placeholder="Ej: 1122334455" required>
+            <input type="tel" class="form-control" id="telefono"
+                   placeholder="Ej: 1122334455" required>
         </div>
 
         <div class="mb-3">
@@ -55,7 +60,6 @@
             <label class="form-label">Horario disponible</label>
             <select id="hora" class="form-select" required>
                 <option value="">-- Selecciona un horario --</option>
-                <!-- Los horarios se cargarán dinámicamente desde checkout.js -->
             </select>
         </div>
 
@@ -74,7 +78,7 @@
             <textarea class="form-control" rows="3"></textarea>
         </div>
 
-        <!-- Spinner -->
+        <!-- SPINNER -->
         <div id="spinner" class="text-center my-3" style="display: none;">
             <div class="spinner-border text-success" role="status">
                 <span class="visually-hidden">Cargando...</span>
@@ -82,13 +86,19 @@
             <p>Enviando reserva...</p>
         </div>
 
-        <!-- Mensaje -->
-        <div id="mensaje-reserva" class="alert alert-success text-center" role="alert" style="display: none;"></div>
-
         <button type="submit" class="btn btn-success w-100 mt-3">
             Confirmar Reserva
         </button>
+
     </form>
+
+    <!-- ================= MENSAJE FINAL ================= -->
+    <div id="mensaje-reserva"
+         class="alert alert-success text-center mt-4"
+         role="alert"
+         style="display: none;">
+    </div>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
