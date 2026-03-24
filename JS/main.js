@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   // ---------------------------
-  // ELEMENTOS DEL NAVBAR test
+  // ELEMENTOS DEL NAVBAR 
   // ---------------------------
   const cartMenu = document.getElementById("cart-menu");
   const cartCount = document.getElementById("cart-count");
