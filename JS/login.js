@@ -1,7 +1,7 @@
 import { auth } from "./firebase.js";
 import {
     signInWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 const emailInput = document.getElementById("adminEmail");
 const passInput = document.getElementById("adminPass");

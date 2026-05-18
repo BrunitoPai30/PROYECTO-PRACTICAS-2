@@ -1,11 +1,10 @@
 import {
+    db,
     collection,
     getDocs,
     query,
     where
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
-import { db } from "./firebase.js";
+} from "./firebase.js";
 
 const lista = document.getElementById("listaCompletados");
 const totalRecaudadoDiv = document.getElementById("totalRecaudado");
