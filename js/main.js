@@ -176,6 +176,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     btn.classList.add("added-temp");
     setTimeout(() => btn.classList.remove("added-temp"), 300);
+
+    mostrarToast("Servicio Agregado");
+  }
+
+  // Toast flotante
+  function mostrarToast(texto) {
+    const existing = document.querySelector(".toast-flotante");
+    if (existing) existing.remove();
+
+    const toast = document.createElement("div");
+    toast.className = "toast-flotante";
+    toast.textContent = texto;
+    document.body.appendChild(toast);
+
+    setTimeout(() => toast.remove(), 2000);
   }
 
   // Conectar botones
