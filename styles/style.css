@@ -222,8 +222,19 @@
   box-shadow: 0 4px 14px rgba(0, 191, 255, 0.3);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  padding-top: 90px; /* ajustá el valor según cuánto querés separarlo */
+  padding-top: 90px;
+}
+
+#inicio,
+#servicios,
+#marcas,
+#contacto {
+  scroll-margin-top: 90px;
 }
 
 
