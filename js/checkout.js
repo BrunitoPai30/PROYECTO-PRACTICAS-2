@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const spinner = document.getElementById("spinner");
     const mensajeReserva = document.getElementById("mensaje-reserva");
 
-    const fechaInput = form.querySelector("input[type='date']");
+    const fechaSelect = document.getElementById("fecha");
     const selectHora = document.getElementById("hora");
     const submitButton = form.querySelector("button[type='submit']");
 
@@ -36,9 +36,47 @@ document.addEventListener("DOMContentLoaded", () => {
 /*Cantidad: ${item.cantidad} — $${item.precio}*/
     totalFinal.textContent = "$ " + totalCarrito.toLocaleString();
 
+    /* ================= CARGAR FECHAS DISPONIBLES ================= */
+    async function cargarFechasDisponibles() {
+        fechaSelect.innerHTML = `<option value="">Cargando fechas...</option>`;
+
+        try {
+            const snapshot = await getDocs(collection(db, "disponibilidad"));
+
+            if (snapshot.empty) {
+                fechaSelect.innerHTML = `<option value="">No hay fechas disponibles</option>`;
+                return;
+            }
+
+            const fechas = [];
+            snapshot.forEach(doc => {
+                fechas.push(doc.data().fecha);
+            });
+
+            const fechasUnicas = [...new Set(fechas)].sort();
+
+            fechaSelect.innerHTML = `<option value="">-- Selecciona una fecha --</option>`;
+
+            fechasUnicas.forEach(fecha => {
+                const opt = document.createElement("option");
+                const [year, month, day] = fecha.split("-");
+                opt.value = fecha;
+                opt.textContent = `${day}/${month}/${year}`;
+                fechaSelect.appendChild(opt);
+            });
+
+        } catch (error) {
+            console.error("Error cargando fechas:", error);
+            fechaSelect.innerHTML = `<option value="">Error al cargar fechas</option>`;
+        }
+    }
+
     /* ================= HORARIOS DISPONIBLES ================= */
     async function cargarHorariosDisponibles(fecha) {
-        if (!fecha) return;
+        if (!fecha) {
+            selectHora.innerHTML = `<option value="">-- Primero selecciona una fecha --</option>`;
+            return;
+        }
 
         selectHora.innerHTML = `<option value="">Cargando horarios...</option>`;
 
@@ -90,9 +128,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    fechaInput.addEventListener("change", () => {
-        cargarHorariosDisponibles(fechaInput.value);
+    fechaSelect.addEventListener("change", () => {
+        cargarHorariosDisponibles(fechaSelect.value);
     });
+
+    cargarFechasDisponibles();
 
     /* ================= SUBMIT ================= */
     form.addEventListener("submit", async (e) => {
@@ -101,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const nombre = form.querySelector("input[type='text']").value;
         const email = form.querySelector("input[type='email']").value;
         const telefono = document.getElementById("telefono").value;
-        const fecha = fechaInput.value;
+        const fecha = fechaSelect.value;
         const hora = selectHora.value;
         const metodo = form.querySelector("select").value;
         const comentario = form.querySelector("textarea").value;
