@@ -13,36 +13,36 @@
 
     <!--NAV-->
 <nav class="navbar navbar-expand-lg custom-navbar fixed-top">
-  <div class="container">
+  <div class="container d-flex align-items-center flex-wrap flex-lg-nowrap">
     <!-- Logo -->
     <a class="navbar-brand" href="#">
       <img src="assets/file.png" alt="Logo" class="logo">
       Blessed Wash
     </a>
 
+    <!-- Carrito (siempre visible, fuera del collapse) -->
+    <div class="dropdown nav-cart order-lg-last ms-lg-auto">
+      <a class="nav-link position-relative" href="#" id="cartDropdown" data-bs-toggle="dropdown">
+        🛒
+        <span id="cart-count" class="cart-count">0</span>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cartDropdown" id="cart-menu">
+        <li class="dropdown-item text-center text-muted">El carrito está vacío</li>
+      </ul>
+    </div>
+
     <!-- Botón para celu -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+    <button class="navbar-toggler ms-auto ms-lg-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <!-- Botones del NAV -->
-    <div class="collapse navbar-collapse" id="navbarContent">
-      <ul class="navbar-nav ms-auto">
+    <div class="collapse navbar-collapse order-lg-2" id="navbarContent">
+      <ul class="navbar-nav ms-lg-auto">
         <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
         <li class="nav-item"><a class="nav-link" href="#nosotros">Servicios</a></li>
         <li class="nav-item"><a class="nav-link" href="#servicios">Marcas</a></li>
         <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
-
-        <!-- Carrito -->
-        <li class="nav-item dropdown">
-          <a class="nav-link position-relative" href="#" id="cartDropdown" data-bs-toggle="dropdown">
-            🛒
-            <span id="cart-count" class="cart-count">0</span>
-          </a>
-          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cartDropdown" id="cart-menu">
-            <li class="dropdown-item text-center text-muted">El carrito está vacío</li>
-          </ul>
-        </li>
       </ul>
     </div>
   </div>

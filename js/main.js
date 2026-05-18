@@ -53,14 +53,14 @@ document.addEventListener("DOMContentLoaded", () => {
       li.className =
         "dropdown-item d-flex justify-content-between align-items-center";
       li.innerHTML = `
-        <div>
-          <div class="small text-primary">${item.categoria || ""}</div>
-          <strong>${item.nombre}</strong>
-          <div class="text-muted small">${item.subtexto || ""}</div>
+        <div class="cart-item-info">
+          <div class="cart-categoria">${item.categoria || ""}</div>
+          <strong class="cart-nombre">${item.nombre}</strong>
+          <div class="cart-subtexto">${item.subtexto || ""}</div>
         </div>
-        <div style="text-align:right;">
-          <div><strong>$${item.precio}</strong></div>
-          <button class="btn-remove btn btn-sm btn-link text-danger" data-index="${index}" style="padding:0;line-height:1;">✖</button>
+        <div class="cart-item-right">
+          <strong class="cart-precio">$${item.precio}</strong>
+          <button class="btn-remove" data-index="${index}">✖</button>
         </div>
       `;
       cartMenu.appendChild(li);
@@ -68,16 +68,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Botón vaciar
     const vaciar = document.createElement("li");
-    vaciar.className = "dropdown-item text-center";
+    vaciar.className = "cart-actions";
     vaciar.innerHTML = `
-      <button class="btn btn-sm btn-danger" id="vaciarCarrito">Vaciar carrito</button>`;
+      <button id="vaciarCarrito" class="cart-btn-vaciar">Vaciar carrito</button>`;
     cartMenu.appendChild(vaciar);
 
     // Botón finalizar compra
     const finalizar = document.createElement("li");
-    finalizar.className = "dropdown-item text-center";
+    finalizar.className = "cart-actions";
     finalizar.innerHTML = `
-      <button id="btn-finalizar-compra" class="btn btn-sm btn-primary w-100">
+      <button id="btn-finalizar-compra" class="cart-btn-finalizar">
         Finalizar compra
       </button>`;
     cartMenu.appendChild(finalizar);
